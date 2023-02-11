@@ -8,10 +8,13 @@ import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+
+import Popup from "./Popup";
 //
 
 export default function App() {
 
+  const [buttonPopup, setButtonPopup] = useState(false);
   const [theme, colorMode] = useMode();
 
   return (
@@ -21,6 +24,10 @@ export default function App() {
         {/* resets CSS to baselines, provided by MUI */}
         <CssBaseline />
         <div className="App">
+          {/* <button onClick={() => setButtonPopup(true)}></button>
+          <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+            <h2>My Popup</h2>
+          </Popup> */}
           <Header />
           <BasicTable />
         </div>
