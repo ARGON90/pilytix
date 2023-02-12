@@ -33,3 +33,8 @@
 .popup-text {
   color: black;
 }
+
+.chart-container{
+  height: 500px;
+  width: 90%;
+}
