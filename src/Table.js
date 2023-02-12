@@ -23,50 +23,21 @@ export default function BasicTable() {
 
   //
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [rowData, setRowData] = useState(null);
 
   function handleRowClick(event, row, setButtonPopup) {
-    // console.log(event)
-    console.log('handle row click')
-    console.log("amount", row.amount);
+    setRowData(row)
     setButtonPopup(true)
-    console.log('buttonPopup', buttonPopup)
-    return (
-      <div className="popup">
-        <div className="popup-inner">
-          <h2 className="popup-text"> hello there </h2>
-          <div>{row.amount}</div>
-        </div>
-      </div>
-    )
-  }
-
-  function displayPopup(row) {
-    console.log('displayPopup');
-    return (
-      <div className="popup">
-        <div className="popup-inner">
-          <h2 className="popup-text"> hello there </h2>
-          <div>{row.amount}</div>
-        </div>
-      </div>
-    )
-  }
-
-  function closefxn(setButtonPopup) {
-    console.log('close!')
-    setButtonPopup(false)
   }
   //
 
   return (
     <TableContainer component={Paper}>
-      {/* <div>
+      <div>
         {buttonPopup &&
-          <div>
-            {displayPopup()}
-          </div>
+          <Popup rowData={rowData} setButtonPopup={setButtonPopup} />
         }
-      </div> */}
+      </div>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
