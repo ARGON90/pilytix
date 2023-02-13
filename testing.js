@@ -1,4 +1,4 @@
-const data = {"pilytixFactorsIncreasingWin": [
+const increasing = [
     {
         "name": "Product",
         "message": "Rep's history with \"Suite\" deals",
@@ -79,71 +79,122 @@ const data = {"pilytixFactorsIncreasingWin": [
             "description": "Medium Positive"
         }
     }
-],
-    "pilytixFactorsDecreasingWin": [
-        {
-            "name": "Amount",
-            "message": "Rep's history working on deals similar in value to $68,989",
-            "weight": {
-                "value": -1,
-                "description": "Weak Negative"
-            }
-        },
-        {
-            "name": "Stage",
-            "message": "Rep's tendency to close similar deals in stage \"3. Initial Conversation\"",
-            "weight": {
-                "value": -2,
-                "description": "Medium Negative"
-            }
-        },
-        {
-            "name": "Lead Source",
-            "message": "Team's historical success with \"Single Game Buyer\" leads",
-            "weight": {
-                "value": -2,
-                "description": "Medium Negative"
-            }
-        },
-        {
-            "name": "Lifetime Ticket Spend",
-            "message": "Customer's total team spend is $161",
-            "weight": {
-                "value": -2,
-                "description": "Medium Negative"
-            }
-        },
-        {
-            "name": "Pushed Close",
-            "message": "Rep has pushed the expected close date 1 time",
-            "weight": {
-                "value": -3,
-                "description": "Strong Negative"
-            }
+]
+const decreasing = [
+    {
+        "name": "Amount",
+        "message": "Rep's history working on deals similar in value to $68,989",
+        "weight": {
+            "value": -1,
+            "description": "Weak Negative"
         }
-    ]
-};
-
-function factorsAffectingProbability(data) {
-    let res = {
-
+    },
+    {
+        "name": "Stage",
+        "message": "Rep's tendency to close similar deals in stage \"3. Initial Conversation\"",
+        "weight": {
+            "value": -2,
+            "description": "Medium Negative"
+        }
+    },
+    {
+        "name": "Lead Source",
+        "message": "Team's historical success with \"Single Game Buyer\" leads",
+        "weight": {
+            "value": -2,
+            "description": "Medium Negative"
+        }
+    },
+    {
+        "name": "Lifetime Ticket Spend",
+        "message": "Customer's total team spend is $161",
+        "weight": {
+            "value": -2,
+            "description": "Medium Negative"
+        }
+    },
+    {
+        "name": "Pushed Close",
+        "message": "Rep has pushed the expected close date 1 time",
+        "weight": {
+            "value": -3,
+            "description": "Strong Negative"
+        }
     }
+]
 
 
+function factorsAffectingProbability(increasing, decreasing) {
+    let res = {
+        strongPositive: [],
+        mediumPositive: [],
+        weakPositive: [],
+        strongNegative: [],
+        mediumNegative: [],
+        weakNegative: [],
+    }
+    increasing.map((item) => {
+        const weight = item.weight.value;
+        if (weight === 1) {
+            res.weakPositive.push({ title: item.name, msg: item.message })
+        } else if (weight === 2) {
+            res.mediumPositive.push({ title: item.name, msg: item.message })
+        } else {
+            res.strongPositive.push({ title: item.name, msg: item.message })
+        }
+
+    })
+    decreasing.map((item) => {
+        const weight = item.weight.value;
+        if (weight === -1) {
+            res.weakNegative.push({ title: item.name, msg: item.message })
+        } else if (weight === -2) {
+            res.mediumNegative.push({ title: item.name, msg: item.message })
+        } else {
+            res.strongNegative.push({ title: item.name, msg: item.message })
+        }
+
+    })
+    return res;
 }
 
-// console.log(factorsAffectingProbability(data));
 
 
-let format = {
-    strongPositive: ['message1', 'message2'],
-    mediumPositive: ['message1', 'message2'],
-    weakPositive: ['message1', 'message2'],
-    strongNegative: ['message1', 'message2'],
-    mediumNegative: ['message1', 'message2'],
-    weakNegative: ['message1', 'message2'],
+function factorsAffecting(increasing, decreasing) {
+    let res =[
+        { strength: "strong-", "strong-": 0, "strong-Color": "hsl(189, 70%, 50%)" },
+        { strength: "medium-", "medium-": 0, "medium-Color": "hsl(189, 70%, 50%)" },
+        { strength: "weak-", "weak-": 0, "weak-Color": "hsl(189, 70%, 50%)" },
+        { strength: "weak+", "weak+": 0, "weak+Color": "hsl(189, 70%, 50%)" },
+        { strength: "medium", "medium+": 0, "medium+Color": "hsl(189, 70%, 50%)" },
+        { strength: "strong+", "strong+": 0, "strong+Color": "hsl(189, 70%, 50%)" }
+    ]
 
 
+    increasing.map((item) => {
+        const weight = item.weight.value;
+        if (weight === 1) {
+            res[3]["weak+"]++;
+        } else if (weight === 2) {
+            res[4]["medium+"]++;
+        } else {
+            res[5]["strong+"]++;
+        }
+
+    })
+    decreasing.map((item) => {
+        const weight = item.weight.value;
+        if (weight === -1) {
+            res[2]["weak-"]++
+        } else if (weight === -2) {
+            res[1]["medium-"]++
+        } else {
+            res[0]["strong-"]++
+        }
+    })
+    return res;
 }
+let data = (factorsAffecting(increasing, decreasing));
 
-console.log(format.strongPositive.length)
+
+console.log(data);
