@@ -2,6 +2,11 @@ import { createContext, useState, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
 
 // color design tokens export
+// tokens for site-wide colors
+// use tailwind shades to get the shades
+// mode represents light/dark mode,
+
+//this establishes all colors
 export const tokens = (mode) => ({
   ...(mode === "dark"
     ? {
@@ -60,6 +65,7 @@ export const tokens = (mode) => ({
         800: "#2a2d64",
         900: "#151632",
       },
+      mainFont: "#c6defe"
     }
     : {
       grey: {
@@ -117,13 +123,17 @@ export const tokens = (mode) => ({
         800: "#c3c6fd",
         900: "#e1e2fe",
       },
+      mainFont: "#0a183e"
     }),
 });
 
 // mui theme settings
+// colors are now established, we need to set up mui to use these colors
+// returns whatever colors we need depending on mode
 export const themeSettings = (mode) => {
   const colors = tokens(mode);
   return {
+    //keying in to different colors based on colors above
     palette: {
       mode: mode,
       ...(mode === "dark"
@@ -158,10 +168,13 @@ export const themeSettings = (mode) => {
             light: colors.grey[100],
           },
           background: {
-            default: "#fcfcfc",
+            default: "#fefeff",
           },
         }),
     },
+
+    //sets up default font families for all headers
+    //only when using typography component?
     typography: {
       fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
       fontSize: 12,
@@ -194,13 +207,16 @@ export const themeSettings = (mode) => {
 };
 
 // context for color mode
+// function that allows us to provide function throughout app
 export const ColorModeContext = createContext({
   toggleColorMode: () => { },
 });
 
+
 export const useMode = () => {
   const [mode, setMode] = useState("dark");
 
+  // toggles color mode
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () =>
@@ -209,6 +225,13 @@ export const useMode = () => {
     []
   );
 
+  //set theme using useMemo
+  //creates theme for MUI, passing mode into theme settings. that gices an object of proper format depending on light or dark
+  //return theme and colorMode for us to use
+  //allows us to create context to have easy access to whether dark or light is active
+  //also gives us a function that changes it.
+  //that function is attached to a button that we'll use.
+  // -> app -> header /w icon
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return [theme, colorMode];
 };

@@ -21,7 +21,7 @@
   padding: 32px;
   width: 100%;
   max-width: 640px;
-  background-color: #FFF;
+  /* background-color: #FFF; */
 }
 
 .close-btn {
@@ -37,4 +37,8 @@
 .chart-container{
   height: 500px;
   width: 90%;
+}
+
+.test {
+  color: pink;
 }
