@@ -27,11 +27,11 @@ export default function BasicTable() {
   // const theme = useTheme();
   const [buttonPopup, setButtonPopup] = useState(null);
   const [oppIdx, setOppIdx] = useState(null);
+  const [key, setKey] = useState(null)
 
   function handleRowClick(event, row, setButtonPopup) {
     setButtonPopup(true);
     setOppIdx(row.oppId - 1)
-    console.log('on click')
   }
 
   //

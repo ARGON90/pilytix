@@ -42,3 +42,8 @@
 .test {
   color: pink;
 }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}

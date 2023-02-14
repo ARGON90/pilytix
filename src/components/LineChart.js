@@ -7,7 +7,7 @@ import { ResponsiveLine } from '@nivo/line';
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const Line = ({data}) => (
+const LineChart = ({data}) => (
     <>
     <div>
         myLine
@@ -83,4 +83,4 @@ const Line = ({data}) => (
     </>
 )
 
-export default Line
+export default LineChart

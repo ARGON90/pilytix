@@ -1,19 +1,18 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../styles.css'
-import MyResponsiveLine from "./LineChart";
-import MyResponsiveBar from "./BarChart"
+import LineChart from "./LineChart";
+import BarChart from "./BarChart"
 import { formatProbabilities, factorsAffectingProbability } from '../functions';
 import { Box, useTheme } from '@mui/material';
 import { ColorModeContext, tokens } from '../theme';
-
+import BarText from './BarText';
 
 export default function Popup({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
     const theme = useTheme();
     const [tab, setTab] = useState('overview')
-    // console.log(rowData)
     const probabilities = rowData.probabilityHistory ? formatProbabilities(rowData.probabilityHistory) : null
     const factors = factorsAffectingProbability(rowData.pilytixFactorsIncreasingWin, rowData.pilytixFactorsDecreasingWin)
-    document.addEventListener('keydown', keyDirection, true)
+    console.log(factors);
     function clickDirection(direction) {
         if (direction === 'left' && oppIdx > 0) {
             setOppIdx(oppIdx - 1)
@@ -22,15 +21,19 @@ export default function Popup({ rowData, setButtonPopup, maxIdx, oppIdx, setOppI
         }
     }
 
-    function keyDirection(e) {
-        if (e.key === 'ArrowLeft' && oppIdx > 0) {
-            setOppIdx(oppIdx - 1)
-        } else if (e.key === 'ArrowRight' && oppIdx < maxIdx) {
-            setOppIdx(oppIdx + 1)
+    function keyPress(e) {
+        if (e.key === 'ArrowRight') {
+            clickDirection('right')
+        } else if (e.key === 'ArrowLeft') {
+            clickDirection('left')
         }
     }
 
-    console.log('inpopup')
+    useEffect(() => {
+        document.addEventListener("keydown", keyPress);
+        return () => document.removeEventListener("keydown", keyPress);
+    });
+
     return (
         <div className="popup">
             <Box backgroundColor={theme.palette.neutral.light}>
@@ -61,14 +64,15 @@ export default function Popup({ rowData, setButtonPopup, maxIdx, oppIdx, setOppI
 
                         {rowData.probabilityHistory && tab === 'history' &&
                             <div className="chart-container">
-                                <MyResponsiveLine data={probabilities} />
+                                <LineChart data={probabilities} />
                             </div>
                         }
 
                         {tab === 'factors' &&
                             <div className="chart-container">
                                 {/* <TestChartTwo data={barData}/> */}
-                                <MyResponsiveBar data={factors} />
+                                <BarChart data={factors} />
+                                <BarText data={factors} />
                             </div>
                         }
                     </div>
