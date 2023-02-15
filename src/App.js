@@ -18,7 +18,7 @@ export default function App() {
       {/* MUI has access to theme as well*/}
       <ThemeProvider theme={theme}>
         {/* resets CSS to defaults, provided by MUI */}
-        <CssBaseline />
+        {/* <CssBaseline /> */}
         <div className="App">
           <Header />
           <BasicTable />

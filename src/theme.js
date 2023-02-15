@@ -139,37 +139,63 @@ export const themeSettings = (mode) => {
       ...(mode === "dark"
         ? {
           // palette values for dark mode
-          primary: {
-            main: colors.primary[500],
+          // primary: {
+          //   main: colors.primary[500],
+          // },
+          // secondary: {
+          //   main: colors.greenAccent[500],
+          // },
+          // neutral: {
+          //   dark: colors.grey[700],
+          //   main: colors.grey[500],
+          //   light: colors.grey[100],
+          // },
+          // background: {
+          //   default: '#3c3c3c',
+          // },
+          page: {
+            background: '#3c3c3c',
+            text: '#fcfcfc'
           },
-          secondary: {
-            main: colors.greenAccent[500],
+          table: {
+            background: '#2c3341',
+            text: '#fcfcfc'
           },
-          neutral: {
-            dark: colors.grey[700],
-            main: colors.grey[500],
-            light: colors.grey[100],
-          },
-          background: {
-            default: colors.primary[500],
-          },
+          popup: {
+            background: '#2c3341',
+            text: '#fcfcfc'
+          }
+
+
         }
         : {
           // palette values for light mode
-          primary: {
-            main: colors.primary[100],
+          // primary: {
+          //   main: colors.primary[100],
+          // },
+          // secondary: {
+          //   main: colors.greenAccent[500],
+          // },
+          // neutral: {
+          //   dark: colors.grey[700],
+          //   main: colors.grey[500],
+          //   light: colors.grey[100],
+          // },
+          // background: {
+          //   default: "#fcfcfc",
+          // },
+          page: {
+            background: '#141b2d',
+            text: '#0a183e'
           },
-          secondary: {
-            main: colors.greenAccent[500],
+          table: {
+            background: '#dddddd',
+            text: '#fcfcfc'
           },
-          neutral: {
-            dark: colors.grey[700],
-            main: colors.grey[500],
-            light: colors.grey[100],
-          },
-          background: {
-            default: "#fefeff",
-          },
+          popup: {
+            background: '#dddddd',
+            text: '#fcfcfc'
+          }
         }),
     },
 

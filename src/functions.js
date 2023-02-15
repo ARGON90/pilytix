@@ -63,6 +63,5 @@ export function factorsAffectingProbability(increasing, decreasing) {
             }
         })
     }
-    console.log(increasing)
     return res;
 }

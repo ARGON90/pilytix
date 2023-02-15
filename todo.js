@@ -1,2 +1,2 @@
-//add current probabilities to the end of the chart?
-// don't display chart if there's no past probabilities
+// add current probabilities to the end of the chart?
+// add messagae if there's no probability history

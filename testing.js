@@ -173,9 +173,6 @@ function factorsAffecting(increasing, decreasing) {
 
     increasing.map((item) => {
         const weight = item.weight.value;
-        // console.log(item.message)
-        // res[3].messages.push(item.message)
-        // console.log(res[3].messages)
         if (weight === 1) {
             res[3]["weak+"]++;
             res[3].messages.push(item.message);
@@ -186,8 +183,8 @@ function factorsAffecting(increasing, decreasing) {
             res[5]["strong+"]++;
             res[5].messages.push(item.message);
         }
-
     })
+    
     decreasing.map((item) => {
         const weight = item.weight.value;
         if (weight === -1) {

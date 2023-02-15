@@ -23,7 +23,7 @@ export default function BasicTable() {
    */
   const data = opportunities.default;
 
-
+  const theme = useTheme();
   // const theme = useTheme();
   const [buttonPopup, setButtonPopup] = useState(null);
   const [oppIdx, setOppIdx] = useState(null);
@@ -37,15 +37,15 @@ export default function BasicTable() {
   //
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ backgroundColor: theme.palette.table.background }}>
       <div>
         {buttonPopup &&
-          <div>
+          <div style={{color:'blue'}}>
             <Popup rowData={data[oppIdx]} setButtonPopup={setButtonPopup} maxIdx={data.length - 1} oppIdx={oppIdx} setOppIdx={setOppIdx} />
           </div>
         }
       </div>
-      <Box color="seconday">
+      <Box color="seconday" >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>

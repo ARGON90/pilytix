@@ -35,7 +35,7 @@ export default function Header() {
                     )}
                 </IconButton>
             </Box>
-            <Box color={colors.mainFont}>
+            <Box color={theme.palette.page.text}>
                 <h2>PILYTIX Scored Opportunities</h2>
             </Box>
         </Box>
