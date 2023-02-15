@@ -38,17 +38,17 @@ export default function Popup({ rowData, setButtonPopup, maxIdx, oppIdx, setOppI
         setMessages(factors[5].messages)
         return () => document.removeEventListener("keydown", keyPress);
     }, [oppIdx]);
-
+    console.log(factors)
     return (
         <div className="popup">
-            <Box height={900} width={850} backgroundColor={theme.palette.popup.background}>
+            <Box height={900} width={850} color={theme.palette.popup.text} backgroundColor={theme.palette.popup.background}>
                 <div className="popup-inner">
                     <button className='close-btn' onClick={() => (setButtonPopup(false))}> close </button>
                     <button onClick={() => (clickDirection('left'))}> left </button>
                     <button onClick={() => (clickDirection('right'))}> right </button>
                     <h2 className="popup-text">{rowData.oppName}</h2>
 
-                    <div style={{ color: "red", border: "1px solid cyan", display: "flex", justifyContent: "center" }}>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
                         <div style={{ width: '33%' }} onClick={() => setTab('overview')}>Opportunity Overview</div>
                         <div style={{ width: '33%' }} onClick={() => setTab('history')}>Probability History</div>
                         <div style={{ width: '33%' }} onClick={() => setTab('factors')}>Factors Affecting Win</div>

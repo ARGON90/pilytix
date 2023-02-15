@@ -1,4 +1,18 @@
-import { CleaningServices } from "@mui/icons-material"
+import { Star, StarBorder } from "@mui/icons-material"
+
+
+export function returnStars(string) {
+    let starNumber = Number(string[0]);
+    let result = [];
+    while (starNumber > 0) {
+        result.push(<Star />)
+        starNumber --
+    }
+    while (result.length < 5) {
+        result.push(<StarBorder />)
+    }
+    return result
+}
 
 export function formatProbabilities(history) {
     let result = [
@@ -23,43 +37,42 @@ export function formatProbabilities(history) {
 }
 
 export function factorsAffectingProbability(increasing, decreasing) {
-    let res = [
-        { strength: "strong-", "strong-": 0, "strong-Color": "hsl(189, 70%, 50%)", messages: [] },
-        { strength: "medium-", "medium-": 0, "medium-Color": "hsl(189, 70%, 50%)", messages: [] },
-        { strength: "weak-", "weak-": 0, "weak-Color": "hsl(189, 70%, 50%)", messages: [] },
-        { strength: "weak+", "weak+": 0, "weak+Color": "hsl(189, 70%, 50%)", messages: [] },
-        { strength: "medium", "medium+": 0, "medium+Color": "hsl(189, 70%, 50%)", messages: [] },
-        { strength: "strong+", "strong+": 0, "strong+Color": "hsl(189, 70%, 50%)", messages: [] }
-    ]
+    let res = {
+        strongN: { strength: "strong-", "strong-": 0, "strong-Color": "hsl(189, 70%, 50%)", messages: [] },
+        mediumN: { strength: "medium-", "medium-": 0, "medium-Color": "hsl(189, 70%, 50%)", messages: [] },
+        weakN: { strength: "weak-", "weak-": 0, "weak-Color": "hsl(189, 70%, 50%)", messages: [] },
+        weakP: { strength: "weak+", "weak+": 0, "weak+Color": "hsl(189, 70%, 50%)", messages: [] },
+        mediumP: { strength: "medium", "medium+": 0, "medium+Color": "hsl(189, 70%, 50%)", messages: [] },
+        strongP: { strength: "strong+", "strong+": 0, "strong+Color": "hsl(189, 70%, 50%)", messages: [] }
+    }
 
     if (increasing) {
         increasing.map((item) => {
             const weight = item.weight.value;
             if (weight === 1) {
-                res[3]["weak+"]++;
-                res[3].messages.push(item.message);
+                res.weakP["weak+"]++;
+                res.weakP.messages.push(item.message);
             } else if (weight === 2) {
-                res[4]["medium+"]++;
-                res[4].messages.push(item.message);
+                res.mediumP["medium+"]++;
+                res.mediumP.messages.push(item.message);
             } else {
-                res[5]["strong+"]++;
-                res[5].messages.push(item.message);
+                res.strongP["strong+"]++;
+                res.strongP.messages.push(item.message);
             }
         })
     }
-
     if (decreasing) {
         decreasing.map((item) => {
             const weight = item.weight.value;
             if (weight === -1) {
-                res[2]["weak-"]++
-                res[2].messages.push(item.message);
+                res.weakN["weak-"]++
+                res.weakN.messages.push(item.message);
             } else if (weight === -2) {
-                res[1]["medium-"]++
-                res[1].messages.push(item.message);
+                res.mediumN["medium-"]++
+                res.mediumN.messages.push(item.message);
             } else {
-                res[0]["strong-"]++
-                res[0].messages.push(item.message);
+                res.strongN["strong-"]++
+                res.strongN.messages.push(item.message);
             }
         })
     }

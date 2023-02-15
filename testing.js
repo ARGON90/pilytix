@@ -124,44 +124,16 @@ const decreasing = [
 ]
 
 
-function factorsAffectingProbability(increasing, decreasing) {
-    let res = {
-        strongPositive: [],
-        mediumPositive: [],
-        weakPositive: [],
-        strongNegative: [],
-        mediumNegative: [],
-        weakNegative: [],
-    }
-    increasing.map((item) => {
-        const weight = item.weight.value;
-        if (weight === 1) {
-            res.weakPositive.push({ title: item.name, msg: item.message })
-        } else if (weight === 2) {
-            res.mediumPositive.push({ title: item.name, msg: item.message })
-        } else {
-            res.strongPositive.push({ title: item.name, msg: item.message })
-        }
-
-    })
-    decreasing.map((item) => {
-        const weight = item.weight.value;
-        if (weight === -1) {
-            res.weakNegative.push({ title: item.name, msg: item.message })
-        } else if (weight === -2) {
-            res.mediumNegative.push({ title: item.name, msg: item.message })
-        } else {
-            res.strongNegative.push({ title: item.name, msg: item.message })
-        }
-
-    })
-    return res;
-}
-
-
-
 function factorsAffecting(increasing, decreasing) {
-    let res =[
+    let test = {
+        strongN: { strength: "strong-", "strong-": 0, "strong-Color": "hsl(189, 70%, 50%)", messages: [] },
+        mediumN: { strength: "medium-", "medium-": 0, "medium-Color": "hsl(189, 70%, 50%)", messages: [] },
+        weakN: { strength: "weak-", "weak-": 0, "weak-Color": "hsl(189, 70%, 50%)", messages: [] },
+        weakP: { strength: "weak+", "weak+": 0, "weak+Color": "hsl(189, 70%, 50%)", messages: [] },
+        mediumP: { strength: "medium", "medium+": 0, "medium+Color": "hsl(189, 70%, 50%)", messages: [] },
+        strongP: { strength: "strong+", "strong+": 0, "strong+Color": "hsl(189, 70%, 50%)", messages: [] }
+    }
+    let res = [
         { strength: "strong-", "strong-": 0, "strong-Color": "hsl(189, 70%, 50%)", messages: [] },
         { strength: "medium-", "medium-": 0, "medium-Color": "hsl(189, 70%, 50%)", messages: [] },
         { strength: "weak-", "weak-": 0, "weak-Color": "hsl(189, 70%, 50%)", messages: [] },
@@ -170,7 +142,36 @@ function factorsAffecting(increasing, decreasing) {
         { strength: "strong+", "strong+": 0, "strong+Color": "hsl(189, 70%, 50%)", messages: [] }
     ]
 
-
+    if (increasing) {
+        increasing.map((item) => {
+            const weight = item.weight.value;
+            if (weight === 1) {
+                test.weakP["weak+"]++;
+                test.weakP.messages.push(item.message);
+            } else if (weight === 2) {
+                test.mediumP["medium+"]++;
+                test.mediumP.messages.push(item.message);
+            } else  {
+                test.strongP["strong+"]++;
+                test.strongP.messages.push(item.message);
+            }
+        })
+    }
+    if (decreasing) {
+        decreasing.map((item) => {
+            const weight = item.weight.value;
+            if (weight === -1) {
+                test.weakN["weak-"]++
+                test.weakN.messages.push(item.message);
+            } else if (weight === -2) {
+                test.mediumN["medium-"]++
+                test.mediumN.messages.push(item.message);
+            } else {
+                test.strongP["strong-"]++
+                test.strongP.messages.push(item.message);
+            }
+        })
+    }
     increasing.map((item) => {
         const weight = item.weight.value;
         if (weight === 1) {
@@ -184,7 +185,7 @@ function factorsAffecting(increasing, decreasing) {
             res[5].messages.push(item.message);
         }
     })
-    
+
     decreasing.map((item) => {
         const weight = item.weight.value;
         if (weight === -1) {
@@ -198,7 +199,9 @@ function factorsAffecting(increasing, decreasing) {
             res[1].messages.push(item.message);
         }
     })
-    return res;
+    console.log(res)
+    console.log('--------------')
+    return [...Object.values(test)];
 }
 let data = (factorsAffecting(increasing, decreasing));
 

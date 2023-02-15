@@ -5,7 +5,7 @@ import BasicTable from "./components/Table";
 import Header from "./components/Header";
 
 import { ColorModeContext, useMode } from "./theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 //resets css, allows us to pass themes into MUI
 //
 
@@ -15,11 +15,8 @@ export default function App() {
   return (
     // this sets up color context, site-wide access
     <ColorModeContext.Provider value={colorMode}>
-      {/* MUI has access to theme as well*/}
       <ThemeProvider theme={theme}>
-        {/* resets CSS to defaults, provided by MUI */}
-        {/* <CssBaseline /> */}
-        <div className="App">
+        <div style={{ backgroundColor: theme.palette.page.background}} className="App">
           <Header />
           <BasicTable />
         </div>

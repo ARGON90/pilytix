@@ -1,5 +1,5 @@
 import { createContext, useState, useMemo } from "react";
-import { createTheme } from "@mui/material/styles";
+import { createTheme, rgbToHex } from "@mui/material/styles";
 
 // color design tokens export
 // tokens for site-wide colors
@@ -153,22 +153,39 @@ export const themeSettings = (mode) => {
           // background: {
           //   default: '#3c3c3c',
           // },
+          //DARK
           page: {
-            background: '#3c3c3c',
+            background: '#0e0e10',
             text: '#fcfcfc'
           },
           table: {
-            background: '#2c3341',
+            background: '#121315', //1e1f21
             text: '#fcfcfc'
           },
           popup: {
-            background: '#2c3341',
+            background: '#1e1f21',
             text: '#fcfcfc'
           }
 
-
+          //DARK
         }
         : {
+          //LIGHT
+          page: {
+            background: '#f9f9f9',
+            text: '#0a183e'
+          },
+          table: {
+            background: '#f4f4f4',
+            text: '#0a183e'
+          },
+          popup: {
+            background: '#f4f4f4',
+            text: '#0a183e'
+          }
+
+          //LIGHT
+
           // palette values for light mode
           // primary: {
           //   main: colors.primary[100],
@@ -184,18 +201,8 @@ export const themeSettings = (mode) => {
           // background: {
           //   default: "#fcfcfc",
           // },
-          page: {
-            background: '#141b2d',
-            text: '#0a183e'
-          },
-          table: {
-            background: '#dddddd',
-            text: '#fcfcfc'
-          },
-          popup: {
-            background: '#dddddd',
-            text: '#fcfcfc'
-          }
+
+
         }),
     },
 

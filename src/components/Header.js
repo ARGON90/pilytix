@@ -29,13 +29,13 @@ export default function Header() {
             <Box display="flex">
                 <IconButton onClick={colorMode.toggleColorMode}>
                     {theme.palette.mode === "dark" ? (
-                        <DarkModeOutlinedIcon />
-                    ) : (
-                        <LightModeOutlinedIcon />
+                        <LightModeOutlinedIcon sx={{color: 'white'}} />
+                        ) : (
+                        <DarkModeOutlinedIcon sx={{color: 'black'}}  />
                     )}
                 </IconButton>
             </Box>
-            <Box color={theme.palette.page.text}>
+            <Box backgroundColor={theme.palette.page.background} color={theme.palette.page.text}>
                 <h2>PILYTIX Scored Opportunities</h2>
             </Box>
         </Box>

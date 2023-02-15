@@ -8,11 +8,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 // Alex's Imports
-import Card from './Popup'
+// import Card from './Popup'
 import { useState, useEffect, useContext } from "react";
 import Popup from "./Popup";
 import { Box, useTheme } from '@mui/material';
 import { ColorModeContext, tokens } from '../theme';
+import PopupCard from "./PopupCard";
 //
 
 import * as opportunities from "../opportunities.json";
@@ -40,8 +41,9 @@ export default function BasicTable() {
     <TableContainer component={Paper} sx={{ backgroundColor: theme.palette.table.background }}>
       <div>
         {buttonPopup &&
-          <div style={{color:'blue'}}>
-            <Popup rowData={data[oppIdx]} setButtonPopup={setButtonPopup} maxIdx={data.length - 1} oppIdx={oppIdx} setOppIdx={setOppIdx} />
+          <div>
+            {/* <Popup rowData={data[oppIdx]} setButtonPopup={setButtonPopup} maxIdx={data.length - 1} oppIdx={oppIdx} setOppIdx={setOppIdx} /> */}
+            <PopupCard rowData={data[oppIdx]} setButtonPopup={setButtonPopup} maxIdx={data.length - 1} oppIdx={oppIdx} setOppIdx={setOppIdx} />
           </div>
         }
       </div>

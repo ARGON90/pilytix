@@ -1,6 +1,12 @@
+* {
+  margin: 0;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
+  /* background-color: #dddddd; */
+  height: 100vh;
 }
 
 .popup {
@@ -18,24 +24,24 @@
 
 .popup-inner {
   position: relative;
-  padding: 32px;
+  /* padding: 32px; */
   width: 100%;
-  max-width: 640px;
   /* background-color: #FFF; */
 }
 
-.close-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+.card-head {
+  display: flex;
+  justify-content: space-between;
 }
 
-.popup-text {
-  color: black;
+.align-right {
+  /* justify-content: flex-end;
+  align-self: flex-end; */
+  justify-content: end;
 }
 
 .chart-container{
-  height: 500px;
+  height: 200px;
   width: 90%;
 }
 
