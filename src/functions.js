@@ -5,11 +5,11 @@ export function returnStars(string) {
     let starNumber = Number(string[0]);
     let result = [];
     while (starNumber > 0) {
-        result.push(<Star />)
+        result.push(<Star className="star" />)
         starNumber --
     }
     while (result.length < 5) {
-        result.push(<StarBorder />)
+        result.push(<StarBorder className="star" />)
     }
     return result
 }
@@ -17,12 +17,12 @@ export function returnStars(string) {
 export function formatProbabilities(history) {
     let result = [
         {
-            id: "Rep",
+            id: "Sales Rep",
             color: "hsl(226, 70%, 50%)",
             data: []
         },
         {
-            id: "PILYTIX",
+            id: "Pilytix",
             color: "hsl(84, 70%, 50%)",
             data: []
         }

@@ -165,6 +165,9 @@ export const themeSettings = (mode) => {
           popup: {
             background: '#1e1f21',
             text: '#fcfcfc'
+          },
+          button: {
+            strongN: 'red'
           }
 
           //DARK
@@ -182,6 +185,9 @@ export const themeSettings = (mode) => {
           popup: {
             background: '#f4f4f4',
             text: '#0a183e'
+          },
+          button: {
+            strongN: 'red'
           }
 
           //LIGHT

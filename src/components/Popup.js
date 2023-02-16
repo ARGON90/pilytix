@@ -34,11 +34,9 @@ export default function Popup({ rowData, setButtonPopup, maxIdx, oppIdx, setOppI
 
     useEffect(() => {
         document.addEventListener("keydown", keyPress);
-        console.log('hello', factors)
         setMessages(factors[5].messages)
         return () => document.removeEventListener("keydown", keyPress);
     }, [oppIdx]);
-    console.log(factors)
     return (
         <div className="popup">
             <Box height={900} width={850} color={theme.palette.popup.text} backgroundColor={theme.palette.popup.background}>

@@ -22,13 +22,12 @@ const BarChart = ({ data, yAxis, barAxisTheme, colors }) => (
         maxValue={yAxis}
         enableGridY={false}
         theme={barAxisTheme.theme}
-        // colors={({ data }) => data.color}
         colors={['#ca191d', '#fa6b4a','#fdbba0', '#98d8c8','#40ae77', '#006d2c']}
         colorBy="index"
+        borderRadius={4}
 
         margin={{ top: 50, right: 0, bottom: 10, left: 50 }}
         padding={0.3}
-        // colors={{ scheme: 'nivo' }}
         defs={[
             {
                 id: 'dots',
@@ -126,9 +125,6 @@ const BarChart = ({ data, yAxis, barAxisTheme, colors }) => (
                 ]
             }
         ]}
-    // role="application"
-    // ariaLabel="Nivo bar chart demo"
-    // barAriaLabel={function (e) { return e.id + ": " + e.formattedValue + " in country: " + e.indexValue }}
     />
 )
 

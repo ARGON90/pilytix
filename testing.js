@@ -178,4 +178,3 @@ export function nivoBarYAxis(data) {
     return maxYAxis
 }
 
-console.log( nivoBarYAxis(data))

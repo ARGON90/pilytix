@@ -1,7 +1,7 @@
 import { ResponsiveLine } from '@nivo/line';
 import { lineChartPointFormat } from '../functions';
 
-const LineChart = ({ data }) => (
+const LineChart = ({ data, axisTheme }) => (
     <>
         <div>
             myLine
@@ -11,7 +11,6 @@ const LineChart = ({ data }) => (
 
             animate={false}
             tooltip={({ point }) => {
-                console.log(point)
                 return (
                     <div
                         style={{
@@ -27,6 +26,9 @@ const LineChart = ({ data }) => (
                     </div>
                 )
             }}
+            colors={['#7cc7fb', '#51ecc3']}
+            colorBy="index"
+            theme={axisTheme.theme}
 
             margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
@@ -46,7 +48,7 @@ const LineChart = ({ data }) => (
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'transportation',
+                legend: 'Days Ago',
                 legendOffset: 36,
                 legendPosition: 'middle'
             }}
@@ -56,14 +58,14 @@ const LineChart = ({ data }) => (
                 tickPadding: 5,
                 tickRotation: 0,
                 tickValues: 4,
-                legend: 'count',
+                legend: 'Probability',
                 legendOffset: -40,
                 legendPosition: 'middle'
             }}
             enableGridX={false}
             enableGridY={false}
             pointSize={10}
-            pointColor={{ theme: 'background' }}
+            pointColor={{ from: 'color', modifiers: [] }}
             pointBorderWidth={2}
             pointBorderColor={{ from: 'serieColor' }}
             pointLabelYOffset={-12}
@@ -71,10 +73,10 @@ const LineChart = ({ data }) => (
             legends={[
                 {
                     anchor: 'bottom-right',
-                    direction: 'column',
+                    direction: 'row',
                     justify: false,
-                    translateX: 100,
-                    translateY: 0,
+                    translateX: 50,
+                    translateY: -20,
                     itemsSpacing: 0,
                     itemDirection: 'left-to-right',
                     itemWidth: 80,
