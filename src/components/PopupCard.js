@@ -4,11 +4,11 @@ import { CardHeader, CardContent, Typography, IconButton, Box, useTheme, Button,
 import { KeyboardArrowLeftOutlined, KeyboardArrowRightOutlined, CloseOutlined, Star, StarBorder } from '@mui/icons-material'
 
 import '../styles.css'
-import { formatProbabilities, factorsAffectingProbability, returnStars } from '../functions';
+import { lineChartPointFormat, formatProbabilities, factorsAffectingProbability, returnStars, nivoBarYAxis } from '../functions';
 import LineChart from "./LineChart";
 import BarChart from "./BarChart"
 import BarText from './BarText';
-
+import { barAxisTheme} from '../theme'
 
 function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
     const theme = useTheme();
@@ -19,7 +19,7 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
     const factors = factorsAffectingProbability(rowData.pilytixFactorsIncreasingWin, rowData.pilytixFactorsDecreasingWin)
     const nivoFactors = [...Object.values(factors)]
     const tier = returnStars(rowData.pilytixTier)
-
+    // const getBarColor = barColors => barColors[bar.id]
     function clickDirection(direction) {
         if (direction === 'left' && oppIdx > 0) {
             setOppIdx(oppIdx - 1)
@@ -37,6 +37,8 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
         }
     }
 
+
+
     useEffect(() => {
         document.addEventListener("keydown", keyPress);
         setMessages(factors.strongP.messages)
@@ -45,7 +47,7 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
 
     return (
         <div className='popup'>
-            <Card sx={{ width: 700, height: 400 }} variant="outlined">
+            <Card sx={{ width: 700, height: 500 }} variant="outlined">
                 <CardHeader
                     title={
                         <div className='card-head'>
@@ -77,36 +79,50 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
 
 
                         <ButtonGroup sx={{ display: "flex", justifyContent: "center" }}>
-                            <Button style={{ width: '33%' }} onClick={() => setTab('history')}>Probability History</Button>
                             <Button style={{ width: '33%' }} onClick={() => setTab('overview')}>Opportunity Overview</Button>
+                            <Button style={{ width: '33%' }} onClick={() => setTab('history')}>Probability History</Button>
                             <Button style={{ width: '33%' }} onClick={() => setTab('factors')}>Factors Affecting Win</Button>
                         </ButtonGroup>
 
                         <div>
                             {tab === 'overview' &&
-                                <div style={{ display: "flex", flexDirection: "column" }}>
-                                    <div style={{ display: "flex", justifyContent: 'space-around', padding: '30px 10px' }}>
-                                        <div>Stage: {rowData.stage}</div>
-                                        <div>Tier: </div>
-                                        {tier.map((star) =>
-                                            <div>{star}</div>
-                                            )}
-                                    </div>
-                                    <div style={{ display: "flex", justifyContent: 'space-around', padding: '30px 10px' }}>
-                                        <div>Value: {rowData.amount}</div>
-                                        {/* add locale string */}
-                                        <div>Product: {rowData.product}</div>
-                                    </div>
-                                    <div style={{ display: "flex", justifyContent: 'space-around', padding: '30px 10px' }}>
-                                        <div style={{display: "flex", flexDirection: "column"}}>
-                                            <div>{(rowData.pilytixProbability *100).toFixed(2).split('.')[0]}%</div>
-                                            <div>Pilytix Probability </div>
+                                <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+
+                                    <div className='popup-row' >
+                                        <div className='popup-item'>
+                                            <div>Stage: {rowData.stage}</div>
                                         </div>
-                                        <div style={{display: "flex", flexDirection: "column"}}>
-                                            <div>{(rowData.repProbability *100).toFixed(2).split('.')[0]}%</div>
+                                        <div className='popup-item'>
+                                            <div style={{ display: 'flex', alignItems: "center" }}>Tier:</div>
+                                            {tier.map((star, idx) =>
+                                                <div key={idx}>{star}</div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <div className='popup-row'>
+                                        <div className='popup-item'>
+                                            <div>Product: {rowData.product}</div>
+                                        </div>
+                                        <div className='popup-item'>
+                                            <div>Value: {rowData.amount.toLocaleString('US', { style: 'currency', currency: 'USD' }).split('.')[0]}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className='popup-row'>
+                                        <div className='popup-item' style={{ flexDirection: "column" }}>
+                                            <div>{(rowData.pilytixProbability * 100).toFixed(2).split('.')[0]}%</div>
+                                            <div style={{ display: "flex", flexDirection: "column", justifyContent: 'flex-start' }}>
+                                                <div style={{ justifyContent: "flex-start" }}>Pilytix Probability </div>
+                                            </div>
+                                        </div>
+
+                                        <div className='popup-item' style={{ flexDirection: "column" }}>
+                                            <div>{(rowData.repProbability * 100).toFixed(2).split('.')[0]}%</div>
                                             <div>Sales Rep Probabability</div>
                                         </div>
                                     </div>
+
                                 </div>
                             }
 
@@ -124,7 +140,7 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
 
                             {tab === 'factors' &&
                                 <div className="chart-container">
-                                    <BarChart data={nivoFactors} />
+                                    <BarChart data={nivoFactors} yAxis={nivoBarYAxis(factors)} barAxisTheme={barAxisTheme} />
                                     <BarText messages={messages} setMessages={setMessages} factors={factors} />
                                 </div>
                             }

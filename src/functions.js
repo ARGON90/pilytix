@@ -78,3 +78,17 @@ export function factorsAffectingProbability(increasing, decreasing) {
     }
     return res;
 }
+
+export function nivoBarYAxis(data) {
+    let maxYAxis = 0;
+    for (let key in data) {
+        let currentData = data[key]
+        let msgLength = currentData.messages.length
+        maxYAxis = Math.max(maxYAxis, msgLength)
+    }
+    return maxYAxis
+}
+
+export function lineChartPointFormat(id) {
+    return id.split('.')[0]
+}

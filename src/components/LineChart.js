@@ -1,21 +1,38 @@
 import { ResponsiveLine } from '@nivo/line';
+import { lineChartPointFormat } from '../functions';
 
-const LineChart = ({data}) => (
+const LineChart = ({ data }) => (
     <>
-    <div>
-        myLine
-    </div>
+        <div>
+            myLine
+        </div>
         <ResponsiveLine
             data={data}
 
-            isInteractive={false}
             animate={false}
+            tooltip={({ point }) => {
+                console.log(point)
+                return (
+                    <div
+                        style={{
+                            background: 'white',
+                            color: 'black',
+                            padding: '9px 12px',
+                            border: '1px solid #ccc',
+                        }}
+                    >
+                        <div>{(lineChartPointFormat(point.id))}</div>
+                        <div>Days Ago: {point.data.x}</div>
+                        <div>probability: {point.data.yStacked}</div>
+                    </div>
+                )
+            }}
 
             margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
             yScale={{
                 type: 'linear',
-                min: 'auto',
+                min: 0,
                 max: 'auto',
                 stacked: true,
                 reverse: false
@@ -38,6 +55,7 @@ const LineChart = ({data}) => (
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
+                tickValues: 4,
                 legend: 'count',
                 legendOffset: -40,
                 legendPosition: 'middle'

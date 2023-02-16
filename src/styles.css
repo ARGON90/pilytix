@@ -54,3 +54,41 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.popup-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 30px 10px;
+}
+
+.popup-item {
+  display: flex;
+  justify-content: center;
+  width: 45%;
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.bar-header-container {
+  margin-left: 85px;
+  margin-right: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bar-header {
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  /* border-top: 1px solid white; */
+}
