@@ -7,7 +7,7 @@ import { ResponsiveRadialBar } from '@nivo/radial-bar'
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const MyResponsiveRadialBar = ({ data /* see data tab */ }) => (
+const MyResponsiveRadialBar = ({ data, axisTheme}) => (
     <ResponsiveRadialBar
         data={data}
         valueFormat=">-.2f"
@@ -16,33 +16,16 @@ const MyResponsiveRadialBar = ({ data /* see data tab */ }) => (
         enableTracks={false}
         enableRadialGrid={false}
         enableCircularGrid={false}
+        isInteractive={false}
+        endAngle={360}
+        maxValue={100}
+        colors={['blue']}
+        colorBy="index"
+        theme={axisTheme.theme}
+
         margin={{ top: 40, right: 120, bottom: 40, left: 40 }}
         radialAxisStart={{ tickSize: 0, tickPadding: 0, tickRotation: 0 }}
         circularAxisOuter={{ tickSize: 0, tickPadding: 0, tickRotation: 0 }}
-        // legends={[
-        //     {
-        //         anchor: 'right',
-        //         direction: 'column',
-        //         justify: false,
-        //         translateX: 80,
-        //         translateY: 0,
-        //         itemsSpacing: 6,
-        //         itemDirection: 'left-to-right',
-        //         itemWidth: 100,
-        //         itemHeight: 18,
-        //         itemTextColor: '#999',
-        //         symbolSize: 18,
-        //         symbolShape: 'square',
-        //         effects: [
-        //             {
-        //                 on: 'hover',
-        //                 style: {
-        //                     itemTextColor: '#000'
-        //                 }
-        //             }
-        //         ]
-        //     }
-        // ]}
     />
 )
  export default MyResponsiveRadialBar;

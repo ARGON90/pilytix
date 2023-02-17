@@ -87,7 +87,7 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
 
     return (
         <div className='popup'>
-            <Card sx={{ width: 800, height: 800 }} variant="outlined">
+            <Card sx={{ width: 800, height: 600 }} variant="outlined">
                 <CardHeader
                     title={
                         <div className='card-head'>
@@ -177,10 +177,37 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
                                             <div>{(rowData.repProbability * 100).toFixed(2).split('.')[0]}%</div>
                                         </div>
                                     </div> */}
-                                    <div style={{height: '200px', width: '200px'}}>
-                                        hi
-                                        <MyResponsiveRadialBar data={testData} />
+
+                                    <div className='popup-row-radial-titles'>
+                                        <div className='popup-item-title-radial'>Rep Probability</div>
+                                        <div className='popup-item-title-radial'>Pilytix Probability</div>
+
+
                                     </div>
+
+                                    <div className='popup-row-radial'>
+                                        <div style={{ height: '200px', width: '200px' }}>
+                                            <div id="container">
+                                                <div id="navi" className='navi-test'>
+                                                    <MyResponsiveRadialBar data={testData} axisTheme={barAxisTheme} />
+                                                </div>
+
+                                                <div id='infoi' className='info-test'>30%</div>
+                                            </div>
+                                        </div>
+
+                                        <div style={{ height: '200px', width: '200px' }}>
+                                            <div id="container">
+                                                <div id="navi" className='navi-test'>
+                                                    <MyResponsiveRadialBar data={testData} axisTheme={barAxisTheme} />
+                                                </div>
+                                                <div id='infoi' className='info-test'>30%</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    {/* <div></div> */}
+
 
                                 </div>
                             }
