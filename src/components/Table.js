@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,45 +7,20 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
-// Alex's Imports
-// import Card from './Popup'
-import { useState, useEffect, useContext } from "react";
-import Popup from "./Popup";
 import { Box, useTheme } from '@mui/material';
-import { ColorModeContext, tokens } from '../theme';
 import PopupCard from "./PopupCard";
-import { returnStars } from "../functions";
-import { percentageColor } from "../functions";
-//
-
+import { returnStars, percentageColor } from "../functions";
 import * as opportunities from "../opportunities.json";
 
 export default function BasicTable() {
-  /**
-   * A basic table to display all non-nested information from opportunities.json
-   */
   const data = opportunities.default;
-
   const theme = useTheme();
-  // const theme = useTheme();
   const [buttonPopup, setButtonPopup] = useState(null);
   const [oppIdx, setOppIdx] = useState(null);
-  const [key, setKey] = useState(null)
 
   function handleRowClick(event, row, setButtonPopup) {
     setButtonPopup(true);
     setOppIdx(row.oppId - 1)
-  }
-
-  // const pilytixProbability = (row.pilytixProbability * 100).toFixed(2).split('.')[0]
-  // const repProbability = (row.repProbability * 100).toFixed(2).split('.')[0]
-
-
-  //
-
-  const tableTest = {
-    color: '#51ecc3'
   }
 
   function BizClass(oppName) {
@@ -60,7 +36,6 @@ export default function BasicTable() {
   }
 
   function oppStageColor(str) {
-
     const oppMap = {
       1: '#f0f3fb',
       2: '#e1e6f7',
@@ -71,19 +46,14 @@ export default function BasicTable() {
       7: '#96a8e4',
       8: '#879be0',
     }
-
     return oppMap[str]
-
   }
 
   return (
     <TableContainer component={Paper} sx={{ backgroundColor: theme.palette.table.background }}>
       <div>
         {buttonPopup &&
-          <div>
-            {/* <Popup rowData={data[oppIdx]} setButtonPopup={setButtonPopup} maxIdx={data.length - 1} oppIdx={oppIdx} setOppIdx={setOppIdx} /> */}
             <PopupCard rowData={data[oppIdx]} setButtonPopup={setButtonPopup} maxIdx={data.length - 1} oppIdx={oppIdx} setOppIdx={setOppIdx} />
-          </div>
         }
       </div>
 
@@ -118,17 +88,14 @@ export default function BasicTable() {
                     </div>
                   </div>
                 </TableCell>
-
                 <TableCell sx={{ fontSize: '14px' }} align="left">
                   <div className="stage-table-container">
                   <div className="stage-table" style={{backgroundColor: oppStageColor(row.stage.split('.')[0]), textAlign: 'center' }}  >{row.stage.split('.')[0]}</div>
                   {row.stage.split('.')[1]}
                   </div>
                 </TableCell>
-
                 <TableCell sx={{ fontSize: '14px', fontWeight: 'bolder', color: percentageColor((row.repProbability * 100).toFixed(2).split('.')[0]) }} align="right">{(row.repProbability * 100).toFixed(2).split('.')[0]}%</TableCell>
                 <TableCell sx={{ fontSize: '14px', fontWeight: 'bolder', color: percentageColor((row.pilytixProbability * 100).toFixed(2).split('.')[0]) }} align="right">{(row.pilytixProbability * 100).toFixed(2).split('.')[0]}%</TableCell>
-
                 <TableCell sx={{ fontSize: '14px' }} align="left">
                   <div className='stars-container'>
                     {returnStars(row.pilytixTier, 'table').map((star, idx) =>
@@ -136,7 +103,6 @@ export default function BasicTable() {
                     )}
                   </div>
                 </TableCell>
-
                 <TableCell sx={{ fontSize: '14px' }} align="right">{row.amount.toLocaleString('US', { style: 'currency', currency: 'USD' }).split('.')[0]}</TableCell>
                 <TableCell sx={{ fontSize: '14px' }} align="left">{row.product}</TableCell>
                 <TableCell sx={{ fontSize: '14px' }} align="left">{row.salesRepName}</TableCell>

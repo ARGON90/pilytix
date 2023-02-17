@@ -1,2 +1,0 @@
-// probability history LegendToggle
-// 

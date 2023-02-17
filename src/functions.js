@@ -4,7 +4,7 @@ import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import DiamondIcon from '@mui/icons-material/Diamond';
 
-
+//misc functions here to save space in componenets
 
 export function returnStars(string, view) {
     let starNumber = Number(string[0]);
@@ -34,7 +34,6 @@ export function formatProbabilities(history) {
             data: []
         }
     ]
-
     history.forEach((item) => {
         const probabilityDifference = item.pilytixProb - item.repProb
         result[0].data.push({ x: item.daysAgo, y: item.repProb })
@@ -52,7 +51,6 @@ export function factorsAffectingProbability(increasing, decreasing) {
         mediumP: { strength: "medium", "medium+": 0, "medium+Color": "hsl(189, 70%, 50%)", messages: [] },
         strongP: { strength: "strong+", "strong+": 0, "strong+Color": "hsl(189, 70%, 50%)", messages: [] }
     }
-
     if (increasing) {
         increasing.map((item) => {
             const weight = item.weight.value;
@@ -96,10 +94,6 @@ export function nivoBarYAxis(data) {
     return maxYAxis
 }
 
-export function lineChartPointFormat(id) {
-    return id.split('.')[0]
-}
-
 export function nivoProbabilities(num) {
     return [
         {
@@ -116,7 +110,6 @@ export function nivoProbabilities(num) {
 
 export function percentageColor(num) {
     const roundedDownNum =  Math.floor(num / 10) * 10;
-
     const colorsObject = {
         0: '#CA191D',
         10: '#D13639',
@@ -134,21 +127,12 @@ export function percentageColor(num) {
     return colorsObject[roundedDownNum]
 }
 
-//miniplan - topic (analytics)
-//half season hourglass half full
-//full season hourglass full
-//suite - diamond
 export function planIcons(plan) {
-
     const iconMap = {
         'Mini-Plan' : <InsertChartIcon />,
         'Half Season' : <HourglassBottomIcon />,
         'Full Season' : <HourglassFullIcon />,
         'Suite' : <DiamondIcon />
     }
-
     return iconMap[plan]
 }
-
-
-//numbersicons

@@ -1,11 +1,6 @@
-import { MessageSharp } from '@mui/icons-material'
-import React, { useState, useEffect } from 'react'
-import { Button, ButtonGroup, useTheme } from '@mui/material'
+import React from 'react'
 
-function BarText({ factors, singleFactorData, messages, setMessages, selectedFactor, setselectedFactor }) {
-
-
-    const theme = useTheme();
+function BarText({ singleFactorData, messages, setMessages, selectedFactor, setselectedFactor }) {
 
     function messagesAndColor(factor) {
         setMessages(singleFactorData[factor].messages)
