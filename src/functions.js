@@ -1,4 +1,9 @@
 import { Star, StarBorder } from "@mui/icons-material"
+import InsertChartIcon from '@mui/icons-material/InsertChart';
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import DiamondIcon from '@mui/icons-material/Diamond';
+
 
 
 export function returnStars(string) {
@@ -92,3 +97,56 @@ export function nivoBarYAxis(data) {
 export function lineChartPointFormat(id) {
     return id.split('.')[0]
 }
+
+export function nivoProbabilities(num) {
+    return [
+        {
+            "id": "",
+            "data": [
+                {
+                    "x": "",
+                    "y": num
+                },
+            ]
+        },
+    ]
+}
+
+export function percentageColor(num) {
+    const roundedDownNum =  Math.floor(num / 10) * 10;
+
+    const colorsObject = {
+        0: '#CA191D',
+        10: '#D13639',
+        20: '#D75356',
+        30: '#DE6F72',
+        40: '#E58C8E',
+        50: '#9FC8B0',
+        60: '#80B695',
+        70: '#60A47B',
+        80: '#409261',
+        90: '#207f46',
+        100: '#006D2C'
+
+    }
+    return colorsObject[roundedDownNum]
+}
+
+//miniplan - topic (analytics)
+//half season hourglass half full
+//full season hourglass full
+//suite - diamond
+export function planIcons(plan) {
+
+    const iconMap = {
+        'Mini-Plan' : <InsertChartIcon />,
+        'Half Season' : <HourglassBottomIcon />,
+        'Full Season' : <HourglassFullIcon />,
+        'Suite' : <DiamondIcon />
+    }
+
+    return iconMap[plan]
+}
+
+
+//numbersicons

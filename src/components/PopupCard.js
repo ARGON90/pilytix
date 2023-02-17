@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Card from '@mui/material/Card'
 import { CardHeader, CardContent, Typography, IconButton, Box, useTheme, Button, ButtonGroup } from '@mui/material'
 import { KeyboardArrowLeftOutlined, KeyboardArrowRightOutlined, CloseOutlined, Star, StarBorder } from '@mui/icons-material'
+import SellIcon from '@mui/icons-material/Sell';
 
 import '../styles.css'
-import { lineChartPointFormat, formatProbabilities, factorsAffectingProbability, returnStars, nivoBarYAxis } from '../functions';
+import { lineChartPointFormat, formatProbabilities, factorsAffectingProbability, returnStars, nivoBarYAxis, nivoProbabilities, percentageColor, planIcons } from '../functions';
 import LineChart from "./LineChart";
 import BarChart from "./BarChart"
 import BarText from './BarText';
-import MyResponsiveRadialBar from './TestRadial'
+import RadialChart from './RadialChart'
 import { testData } from './testradialdata'
 import { barAxisTheme } from '../theme'
 
@@ -24,7 +25,8 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
     const factors = factorsAffectingProbability(rowData.pilytixFactorsIncreasingWin, rowData.pilytixFactorsDecreasingWin)
     const nivoFactors = [...Object.values(factors)]
     const tier = returnStars(rowData.pilytixTier)
-
+    const pilytixProbability = (rowData.pilytixProbability * 100).toFixed(2).split('.')[0]
+    const repProbability = (rowData.repProbability * 100).toFixed(2).split('.')[0]
 
     function clickDirection(direction) {
         if (direction === 'left' && oppIdx > 0) {
@@ -93,14 +95,24 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
                         <div className='card-head'>
                             <div style={{ width: '35px' }}>
                             </div>
-                            <div style={{ justifyContent: 'center' }}>
-                                <IconButton onClick={() => (clickDirection('left'))}>
-                                    <KeyboardArrowLeftOutlined />
-                                </IconButton>
-                                {rowData.oppName}
-                                <IconButton onClick={() => (clickDirection('right'))}>
-                                    <KeyboardArrowRightOutlined />
-                                </IconButton>
+                            <div style={{ width: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', fontSize: '20px', fontWeight: 'bold' }}>
+
+                                <div classname='test' style={{ display: "flex", width: '20%', justifyContent: 'flex-end' }}>
+                                    <IconButton onClick={() => (clickDirection('left'))}>
+                                        <KeyboardArrowLeftOutlined size='large' />
+                                    </IconButton>
+                                </div>
+
+                                <div style={{ width: '50%' }}>
+                                    {rowData.oppName}
+                                </div>
+
+                                <div style={{ display: "flex", width: '20%', justifyContent: 'flex-start' }}>
+                                    <IconButton onClick={() => (clickDirection('right'))}>
+                                        <KeyboardArrowRightOutlined />
+                                    </IconButton>
+                                </div>
+
                             </div>
                             <div className='align-right'>
                                 <IconButton onClick={() => (setButtonPopup(false))} >
@@ -119,29 +131,29 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
 
 
                         <ButtonGroup sx={{ display: "flex", justifyContent: "center" }}>
-                            <Button style={{ width: '33%' }} onClick={() => setTab('overview')}>Opportunity Overview</Button>
-                            <Button style={{ width: '33%' }} onClick={() => setTab('history')}>Probability History</Button>
-                            <Button style={{ width: '33%' }} onClick={() => setTab('factors')}>Factors Affecting Win</Button>
+                            <Button sx={{ fontSize: '15px' }} style={tab === 'overview' ? { backgroundColor: "#90caf9", color: 'black', fontWeight: 'bold', width: '33%' } : { width: '33%' }} onClick={() => setTab('overview')}>Opportunity Overview</Button>
+                            <Button sx={{ fontSize: '15px' }} style={tab === 'history' ? { backgroundColor: "#90caf9", color: 'black', fontWeight: 'bold', width: '33%' } : { width: '33%' }} onClick={() => setTab('history')}>Probability History</Button>
+                            <Button sx={{ fontSize: '15px' }} style={tab === 'factors' ? { backgroundColor: "#90caf9", color: 'black', fontWeight: 'bold', width: '33%' } : { width: '33%' }} onClick={() => setTab('factors')}>Factors Affecting Win</Button>
                         </ButtonGroup>
 
                         <div>
                             {tab === 'overview' &&
                                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
 
-                                    <div className='popup-row' >
+                                    <div className='popup-row1' >
                                         <div className='popup-item'>
                                             <div className='popup-item-title'>Stage</div>
                                             <div className='stage-container'>
-                                                <button className={stage === '1' ? 'stage-highlighted' : 'stage-default'} style={{ backgroundColor: '#f0f3fb' }}>{stage === '1' && 1}</button>
+                                                <button className={stage === '1' ? 'stage-highlighted' : 'stage-default'} style={{ backgroundColor: '#f0f3fb', borderRadius: '4px 0 0 4px' }}>{stage === '1' && 1}</button>
                                                 <button className={stage === '2' ? 'stage-highlighted' : 'stage-default'} style={{ backgroundColor: '#e1e6f7' }}>{stage === '2' && 2}</button>
                                                 <button className={stage === '3' ? 'stage-highlighted' : 'stage-default'} style={{ backgroundColor: '#d2daf3' }}>{stage === '3' && 3}</button>
                                                 <button className={stage === '4' ? 'stage-highlighted' : 'stage-default'} style={{ backgroundColor: '#c3cdef' }}>{stage === '4' && 4}</button>
                                                 <button className={stage === '5' ? 'stage-highlighted' : 'stage-default'} style={{ backgroundColor: '#b4c1ec' }}>{stage === '5' && 5}</button>
                                                 <button className={stage === '6' ? 'stage-highlighted' : 'stage-default'} style={{ backgroundColor: '#a5b4e8' }}>{stage === '6' && 6}</button>
                                                 <button className={stage === '7' ? 'stage-highlighted' : 'stage-default'} style={{ backgroundColor: '#96a8e4' }}>{stage === '7' && 7}</button>
-                                                <button className={stage === '8' ? 'stage-highlighted' : 'stage-default'} style={{ backgroundColor: '#879be0' }}>{stage === '8' && 8}</button>
+                                                <button className={stage === '8' ? 'stage-highlighted' : 'stage-default'} style={{ backgroundColor: '#879be0', borderRadius: '0px 4px 4px 0' }}>{stage === '8' && 8}</button>
                                             </div>
-                                            <div> {rowData.stage.split('.')[1]}</div>
+                                            <div className='popup-item-text'> {rowData.stage.split('.')[1]}</div>
                                         </div>
 
                                         <div className='popup-item'>
@@ -154,60 +166,55 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
                                         </div>
                                     </div>
 
-                                    <div className='popup-row'>
+                                    <div className='popup-row2'>
+
                                         <div className='popup-item'>
                                             <div className='popup-item-title'>Product</div>
-                                            <div>{rowData.product}</div>
+                                            <div className='popup-item-row2'>
+                                                <div>{rowData.product}</div>
+                                                <div className='plan-icon'>{planIcons(rowData.product)}</div>
+                                            </div>
                                         </div>
 
                                         <div className='popup-item'>
                                             <div className='popup-item-title'>Value</div>
-                                            <div>{rowData.amount.toLocaleString('US', { style: 'currency', currency: 'USD' }).split('.')[0]}</div>
+                                            <div className='popup-item-row2'>
+                                                <div>{rowData.amount.toLocaleString('US', { style: 'currency', currency: 'USD' }).split('.')[0]}</div>
+                                                <div className='plan-icon'><SellIcon /></div>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    {/* <div className='popup-row'>
-                                        <div className='popup-item' style={{ flexDirection: "column" }}>
-                                            <div className='popup-item-title'>Pilytix Probability </div>
-                                            <div>{(rowData.pilytixProbability * 100).toFixed(2).split('.')[0]}%</div>
-                                        </div>
-
-                                        <div className='popup-item' style={{ flexDirection: "column" }}>
-                                            <div className='popup-item-title'>Sales Rep Probabability</div>
-                                            <div>{(rowData.repProbability * 100).toFixed(2).split('.')[0]}%</div>
-                                        </div>
-                                    </div> */}
-
-                                    <div className='popup-row-radial-titles'>
-                                        <div className='popup-item-title-radial'>Rep Probability</div>
-                                        <div className='popup-item-title-radial'>Pilytix Probability</div>
-
-
-                                    </div>
 
                                     <div className='popup-row-radial'>
+                                        <div className='radial-left-spacer'></div>
                                         <div style={{ height: '200px', width: '200px' }}>
-                                            <div id="container">
-                                                <div id="navi" className='navi-test'>
-                                                    <MyResponsiveRadialBar data={testData} axisTheme={barAxisTheme} />
+                                            <div id="radial-container">
+                                                <div id="radial" className='ind-radial-container radial-column-left'>
+                                                    <RadialChart data={nivoProbabilities(repProbability)} color={percentageColor(repProbability)} />
                                                 </div>
 
-                                                <div id='infoi' className='info-test'>30%</div>
-                                            </div>
-                                        </div>
-
-                                        <div style={{ height: '200px', width: '200px' }}>
-                                            <div id="container">
-                                                <div id="navi" className='navi-test'>
-                                                    <MyResponsiveRadialBar data={testData} axisTheme={barAxisTheme} />
+                                                <div id='percentage' className='percentage-styling' style={{ color: percentageColor(repProbability) }}>{repProbability}%</div>
+                                                <div id="radial" className='ind-radial-container'>
+                                                    <div id='percentage-text' className='radial-title'>Rep Probability</div>
                                                 </div>
-                                                <div id='infoi' className='info-test'>30%</div>
                                             </div>
                                         </div>
-
+                                        <div className='radial-mid-spacer'></div>
+                                        <div className='radial-mid-spacer'></div>
+                                        <div style={{ height: '200px', width: '200px' }}>
+                                            <div id="radial-container">
+                                                <div id="radial" className='ind-radial-container'>
+                                                    <RadialChart data={nivoProbabilities(pilytixProbability)} color={percentageColor(pilytixProbability)} />
+                                                </div>
+                                                <div id='percentage' className='percentage-styling' style={{ color: percentageColor(pilytixProbability) }}>{pilytixProbability}%</div>
+                                                <div id="radial" className='ind-radial-container'>
+                                                    <div id='percentage-text' className='radial-title'>Pilytix Probability</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='radial-right-spacer'></div>
                                     </div>
-                                    {/* <div></div> */}
-
 
                                 </div>
                             }

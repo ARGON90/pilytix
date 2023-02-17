@@ -31,6 +31,7 @@
 
 .card-head {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
@@ -50,9 +51,11 @@
   width: 90%;
 }
 
-.test {
-  color: pink;
+.table-title {
+  padding-bottom: 30px;
+  text-decoration: underline;
 }
+
 
 .flex-row {
   display: flex;
@@ -60,42 +63,28 @@
   justify-content: space-between;
 }
 
-.popup-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 30px 10px;
-}
-
-.popup-row-radial-titles {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding-top: 30px;
-}
-
-.popup-row-radial {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.radial-column-left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* margin-right: 80px; */
-  /* padding-bottom: 100px; */
-}
-
-.radial-column-right {
-  /* margin-right: 90px; */
-}
-
-.radial-titles {
-  font-size: 18px;
+.popup-item-title {
+  font-size: 20px;
   font-weight: bold;
+  margin-bottom: 10px;
+  font-style: italic;
+  text-decoration: underline;
 }
+
+.popup-row1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20px 10px 10px 10px;
+}
+.popup-row2 {
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+  justify-content: space-around;
+  padding: 30px 0px 50px 10px;
+}
+
 
 .popup-item {
   display: flex;
@@ -103,16 +92,28 @@
   width: 45%;
 }
 
-.popup-item-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.popup-item-row2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-left: 20px;
+
 }
 
-.popup-item-title-radial {
-  font-size: 18px;
-  font-weight: bold;
+.plan-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1.2);
+  padding-left: 5px;
+  padding-right: 5px;
 }
+
+.test {
+  transform: scale(1.5);
+}
+
 
 .stage-container {
   display: flex;
@@ -121,11 +122,25 @@
   margin-bottom: 10px;
 }
 
+.header-buttons-default {
+  width: 33%;
+  font-size: 20px;
+}
+
+.header-buttons-highlighted {
+  width: 33%;
+  font-size: 20px;
+}
+
 .stage-default {
   height: 30px;
   width: 30px;
   border: none;
   font-weight: bold;
+}
+
+.popup-item-text {
+  font-size: 18px;
 }
 
 .stage-highlighted {
@@ -139,6 +154,7 @@
   display: flex;
   flex-direction: row;
   align-self: center;
+  padding-top: 5px;
 }
 
 .star {
@@ -146,6 +162,8 @@
   padding-left: 5px;
   padding-right: 5px;
 }
+
+
 
 .messages-container {
   margin-top: 15px;
@@ -174,18 +192,36 @@
   padding-top: 15px;
 }
 
-#container {
+.popup-row-radial {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+.popup-row-radial-titles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.radial-titles {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#radial-container {
   width: 300px;
   height: 275px;
   position: relative;
 }
 
-.navi-test {
+.ind-radial-container {
   margin-left: 40px;
 }
 
-#navi,
-#infoi {
+#radial,
+#percentage {
   width: 100%;
   height: 80%;
   position: absolute;
@@ -193,16 +229,40 @@
   bottom: 200;
   left: 0;
 }
-#infoi {
+
+#percentage {
   z-index: 10;
   margin-top: 100px;
 }
 
-.info-test {
+.percentage-styling {
   font-size: 20px;
-  margin-bottom: 200px;
 }
 
+#percentage-text {
+  z-index: 10;
+  margin-top: 10px;
+}
+
+.radial-title {
+  font-size: 20px;
+  font-weight: bold;
+  padding-right: 70px;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.radial-left-spacer {
+  margin-left: 0px;
+}
+
+.radial-mid-spacer {
+  margin-right: 50px;
+}
+
+.radial-right-spacer {
+  margin-right: 100px;
+}
 
 
 

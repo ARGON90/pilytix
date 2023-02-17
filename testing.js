@@ -168,7 +168,7 @@ function factorsAffecting(increasing, decreasing) {
 let data = (factorsAffecting(increasing, decreasing));
 
 
-export function nivoBarYAxis(data) {
+function nivoBarYAxis(data) {
     let maxYAxis = 0;
     for (let key in data) {
         let currentData = data[key]
@@ -178,3 +178,38 @@ export function nivoBarYAxis(data) {
     return maxYAxis
 }
 
+function nivoProbabilities(num) {
+    return [
+        {
+            "id": "",
+            "data": [
+                {
+                    "x": "",
+                    "y": num
+                },
+            ]
+        },
+    ]
+}
+
+function percentageColor(num) {
+    const roundedDownNum =  Math.floor(num / 10) * 10;
+
+    const colorsObject = {
+        0: '#CA191D',
+        10: '#D13639',
+        20: '#D75356',
+        30: '#DE6F72',
+        40: '#E58C8E',
+        50: '#9FC8B0',
+        60: '#80B695',
+        70: '#60A47B',
+        80: '#409261',
+        90: '#207f46',
+        100: '#006D2C'
+
+    }
+    return colorsObject[roundedDownNum]
+}
+
+console.log(percentageColor(45))

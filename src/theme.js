@@ -281,3 +281,14 @@ export const barAxisTheme = {
     textColor: 'white',
   },
 };
+
+
+const Iconstyles = {
+  button: {
+    width: 64, height: 64,
+    padding: 0,
+  },
+  icon: {
+    width: 64, height: 64,
+  },
+};
