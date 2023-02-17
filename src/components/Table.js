@@ -50,10 +50,11 @@ export default function BasicTable() {
   }
 
   return (
+
     <TableContainer component={Paper} sx={{ backgroundColor: theme.palette.table.background }}>
       <div>
         {buttonPopup &&
-            <PopupCard rowData={data[oppIdx]} setButtonPopup={setButtonPopup} maxIdx={data.length - 1} oppIdx={oppIdx} setOppIdx={setOppIdx} />
+          <PopupCard rowData={data[oppIdx]} setButtonPopup={setButtonPopup} maxIdx={data.length - 1} oppIdx={oppIdx} setOppIdx={setOppIdx} />
         }
       </div>
 
@@ -77,7 +78,7 @@ export default function BasicTable() {
               <TableRow
                 onClick={(event) => handleRowClick(event, row, setButtonPopup)}
                 key={row.oppId}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 }, cursor: 'pointer', "&:hover": {backgroundColor: theme.palette.tableRowHover} }}
               >
                 <TableCell sx={{ fontSize: '14px' }} component="th" scope="row">
                   <div className="year-container">
@@ -90,8 +91,8 @@ export default function BasicTable() {
                 </TableCell>
                 <TableCell sx={{ fontSize: '14px' }} align="left">
                   <div className="stage-table-container">
-                  <div className="stage-table" style={{backgroundColor: oppStageColor(row.stage.split('.')[0]), textAlign: 'center' }}  >{row.stage.split('.')[0]}</div>
-                  {row.stage.split('.')[1]}
+                    <div className="stage-table" style={{ backgroundColor: oppStageColor(row.stage.split('.')[0]), textAlign: 'center' }}  >{row.stage.split('.')[0]}</div>
+                    {row.stage.split('.')[1]}
                   </div>
                 </TableCell>
                 <TableCell sx={{ fontSize: '14px', fontWeight: 'bolder', color: percentageColor((row.repProbability * 100).toFixed(2).split('.')[0]) }} align="right">{(row.repProbability * 100).toFixed(2).split('.')[0]}%</TableCell>

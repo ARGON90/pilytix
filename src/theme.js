@@ -24,7 +24,11 @@ export const themeSettings = (mode) => {
           axisTheme: {
             fontSize: '14px',
             textColor: 'white',
+          },
+          tableRowHover: {
+            backgroundColor: '#5d5f61'
           }
+
         }
         : {
           //LIGHT
@@ -46,6 +50,9 @@ export const themeSettings = (mode) => {
           axisTheme: {
             fontSize: '14px',
             textColor: 'black',
+          },
+          tableRowHover: {
+            backgroundColor: '#dedede'
           }
         }),
     },
