@@ -166,9 +166,11 @@ export const themeSettings = (mode) => {
             background: '#1e1f21',
             text: '#fcfcfc'
           },
-          button: {
-            strongN: 'red'
+          axisTheme: {
+            fontSize: '14px',
+            textColor: 'white',
           }
+
 
           //DARK
         }
@@ -188,6 +190,10 @@ export const themeSettings = (mode) => {
           },
           button: {
             strongN: 'red'
+          },
+          axisTheme: {
+            fontSize: '11px',
+            textColor: 'black',
           }
 
           //LIGHT
@@ -279,16 +285,5 @@ export const barAxisTheme = {
   theme: {
     fontSize: '14px',
     textColor: 'white',
-  },
-};
-
-
-const Iconstyles = {
-  button: {
-    width: 64, height: 64,
-    padding: 0,
-  },
-  icon: {
-    width: 64, height: 64,
   },
 };

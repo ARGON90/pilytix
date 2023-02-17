@@ -3,8 +3,8 @@ import { lineChartPointFormat } from '../functions';
 
 const LineChart = ({ data, axisTheme }) => (
     <>
-        <div>
-            myLine
+        <div className='chart-title'>
+            Probability History
         </div>
         <ResponsiveLine
             data={data}
@@ -28,7 +28,7 @@ const LineChart = ({ data, axisTheme }) => (
             }}
             colors={['#7cc7fb', '#51ecc3']}
             colorBy="index"
-            theme={axisTheme.theme}
+            theme={axisTheme}
 
             margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
@@ -59,7 +59,7 @@ const LineChart = ({ data, axisTheme }) => (
                 tickRotation: 0,
                 tickValues: 4,
                 legend: 'Probability',
-                legendOffset: -40,
+                legendOffset: -50,
                 legendPosition: 'middle'
             }}
             enableGridX={false}

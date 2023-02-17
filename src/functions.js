@@ -6,15 +6,17 @@ import DiamondIcon from '@mui/icons-material/Diamond';
 
 
 
-export function returnStars(string) {
+export function returnStars(string, view) {
     let starNumber = Number(string[0]);
     let result = [];
     while (starNumber > 0) {
         result.push(<Star className="star" />)
         starNumber --
     }
-    while (result.length < 5) {
-        result.push(<StarBorder className="star" />)
+    if (view !== 'table') {
+        while (result.length < 5) {
+            result.push(<StarBorder className="star" />)
+        }
     }
     return result
 }

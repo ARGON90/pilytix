@@ -10,8 +10,6 @@ import LineChart from "./LineChart";
 import BarChart from "./BarChart"
 import BarText from './BarText';
 import RadialChart from './RadialChart'
-import { testData } from './testradialdata'
-import { barAxisTheme } from '../theme'
 
 
 function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
@@ -48,7 +46,7 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
     const singleFactorData = {
         strongN: {
             messages: factors.strongN.messages,
-            color: '#ca191d',
+            color: '#fa4f2d',
             title: "Strong Negative Factors"
         },
         mediumN: {
@@ -58,12 +56,12 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
         },
         weakN: {
             messages: factors.weakN.messages,
-            color: '#fdbba0',
+            color: '#fa856a',
             title: "Weak Negative Factors"
         },
         weakP: {
             messages: factors.weakP.messages,
-            color: '#98d8c8',
+            color: '#65bc8e',
             title: "Weak Positive Factors"
         },
         mediumP: {
@@ -73,8 +71,14 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
         },
         strongP: {
             messages: factors.strongP.messages,
-            color: '#0062dc',
+            color: '#02a060',
             title: "Strong Positive Factors"
+        }
+    }
+
+    function leftArrowDisable() {
+        if (oppIdx === 0) {
+            return true
         }
     }
 
@@ -98,7 +102,7 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
                             <div style={{ width: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', fontSize: '20px', fontWeight: 'bold' }}>
 
                                 <div classname='test' style={{ display: "flex", width: '20%', justifyContent: 'flex-end' }}>
-                                    <IconButton onClick={() => (clickDirection('left'))}>
+                                    <IconButton disabled={oppIdx === 0} onClick={() => (clickDirection('left'))}>
                                         <KeyboardArrowLeftOutlined size='large' />
                                     </IconButton>
                                 </div>
@@ -108,7 +112,7 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
                                 </div>
 
                                 <div style={{ display: "flex", width: '20%', justifyContent: 'flex-start' }}>
-                                    <IconButton onClick={() => (clickDirection('right'))}>
+                                    <IconButton disabled={oppIdx === maxIdx} onClick={() => (clickDirection('right'))}>
                                         <KeyboardArrowRightOutlined />
                                     </IconButton>
                                 </div>
@@ -160,7 +164,7 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
                                             <div className='popup-item-title'>Tier</div>
                                             <div className='stars-container'>
                                                 {tier.map((star, idx) =>
-                                                    <div className='star' key={idx}>{star}</div>
+                                                    <div className='stars-popup' key={idx}>{star}</div>
                                                 )}
                                             </div>
                                         </div>
@@ -224,7 +228,7 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
                                     {
                                         rowData.probabilityHistory ?
                                             <div className="linechart-container">
-                                                <LineChart data={probabilityHistory} axisTheme={barAxisTheme} />
+                                                <LineChart data={probabilityHistory} axisTheme={theme.palette.axisTheme} />
                                             </div>
                                             : <div className='probability-message'>There's no probability history for this opportunitiy!</div>
                                     }
@@ -233,7 +237,7 @@ function PopupCard({ rowData, setButtonPopup, maxIdx, oppIdx, setOppIdx }) {
 
                             {tab === 'factors' &&
                                 <div className="chart-container">
-                                    <BarChart data={nivoFactors} yAxis={nivoBarYAxis(factors)} barAxisTheme={barAxisTheme} />
+                                    <BarChart data={nivoFactors} yAxis={nivoBarYAxis(factors)} axisTheme={theme.palette.axisTheme} />
                                     <BarText messages={messages} setMessages={setMessages} oppIdx={oppIdx} selectedFactor={selectedFactor} setselectedFactor={setselectedFactor} singleFactorData={singleFactorData} />
                                 </div>
                             }

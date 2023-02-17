@@ -20,12 +20,12 @@ function BarText({ factors, singleFactorData, messages, setMessages, selectedFac
     return (
         <>
             <div className='bar-header-container'>
-                <div className={selectedFactor === 'strongN' ? 'strongN-highlight' : 'strongN-default'} onClick={() => { messagesAndColor('strongN') }}>Strong-</div>
-                <div className={selectedFactor === 'mediumN' ? 'mediumN-highlight' : 'mediumN-default'} onClick={() => { messagesAndColor('mediumN') }}>Medium-</div>
-                <div className={selectedFactor === 'weakN' ? 'weakN-highlight' : 'weakN-default'} onClick={() => { messagesAndColor('weakN') }}>Weak-</div>
-                <div className={selectedFactor === 'weakP' ? 'weakP-highlight' : 'weakP-default'} onClick={() => { messagesAndColor('weakP') }}>Weak+</div>
-                <div className={selectedFactor === 'mediumP' ? 'mediumP-highlight' : 'mediumP-default'} onClick={() => { messagesAndColor('mediumP') }}>Medium+</div>
-                <div className={selectedFactor === 'strongP' ? 'strongP-highlight' : 'strongP-default'} onClick={() => { messagesAndColor('strongP') }}>Strong+</div>
+                <div className={selectedFactor === 'strongN' ? 'strongN-highlight bar-x-default' : 'strongN-default bar-x-default'} onClick={() => { messagesAndColor('strongN') }}>Strong-</div>
+                <div className={selectedFactor === 'mediumN' ? 'mediumN-highlight bar-x-default' : 'mediumN-default bar-x-default'} onClick={() => { messagesAndColor('mediumN') }}>Medium-</div>
+                <div className={selectedFactor === 'weakN' ? 'weakN-highlight bar-x-default' : 'weakN-default bar-x-default'} onClick={() => { messagesAndColor('weakN') }}>Weak-</div>
+                <div className={selectedFactor === 'weakP' ? 'weakP-highlight bar-x-default' : 'weakP-default bar-x-default'} onClick={() => { messagesAndColor('weakP') }}>Weak+</div>
+                <div className={selectedFactor === 'mediumP' ? 'mediumP-highlight bar-x-default' : 'mediumP-default bar-x-default'} onClick={() => { messagesAndColor('mediumP') }}>Medium+</div>
+                <div className={selectedFactor === 'strongP' ? 'strongP-highlight bar-x-default' : 'strongP-default bar-x-default'} onClick={() => { messagesAndColor('strongP') }}>Strong+</div>
             </div>
 
             <div className='messages-container'>

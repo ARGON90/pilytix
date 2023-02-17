@@ -14,6 +14,8 @@ import Popup from "./Popup";
 import { Box, useTheme } from '@mui/material';
 import { ColorModeContext, tokens } from '../theme';
 import PopupCard from "./PopupCard";
+import { returnStars } from "../functions";
+import { percentageColor } from "../functions";
 //
 
 import * as opportunities from "../opportunities.json";
@@ -35,7 +37,44 @@ export default function BasicTable() {
     setOppIdx(row.oppId - 1)
   }
 
+  // const pilytixProbability = (row.pilytixProbability * 100).toFixed(2).split('.')[0]
+  // const repProbability = (row.repProbability * 100).toFixed(2).split('.')[0]
+
+
   //
+
+  const tableTest = {
+    color: '#51ecc3'
+  }
+
+  function BizClass(oppName) {
+    if (oppName.split('-')[0] === 'B2C ') {
+      return (
+        <button className='b2c'>B2C</button>
+      )
+    } else if (oppName.split('-')[0] === 'B2B ') {
+      return (
+        <button className='b2b'>B2B</button>
+      )
+    }
+  }
+
+  function oppStageColor(str) {
+
+    const oppMap = {
+      1: '#f0f3fb',
+      2: '#e1e6f7',
+      3: '#d2daf3',
+      4: '#c3cdef',
+      5: '#b4c1ec',
+      6: '#a5b4e8',
+      7: '#96a8e4',
+      8: '#879be0',
+    }
+
+    return oppMap[str]
+
+  }
 
   return (
     <TableContainer component={Paper} sx={{ backgroundColor: theme.palette.table.background }}>
@@ -47,18 +86,19 @@ export default function BasicTable() {
           </div>
         }
       </div>
+
       <Box color="seconday" >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
-            <TableRow>
-              <TableCell align="left">Opportunity Name</TableCell>
-              <TableCell align="left">Opportunity Stage</TableCell>
-              <TableCell align="right">Rep Probability</TableCell>
-              <TableCell align="right">PX Probability</TableCell>
-              <TableCell align="left">PX Tier</TableCell>
-              <TableCell align="right">Amount</TableCell>
-              <TableCell align="left">Product</TableCell>
-              <TableCell align="left">Sales Rep</TableCell>
+            <TableRow >
+              <TableCell sx={{ color: '#00caff', fontWeight: 'bold', fontSize: '16px' }} align="left">Opportunity Name</TableCell>
+              <TableCell sx={{ color: '#00caff', fontWeight: 'bold', fontSize: '16px' }} align="left">Opportunity Stage</TableCell>
+              <TableCell sx={{ color: '#00caff', fontWeight: 'bold', fontSize: '16px' }} align="right">Rep Probability</TableCell>
+              <TableCell sx={{ color: '#00caff', fontWeight: 'bold', fontSize: '16px' }} align="right">PX Probability</TableCell>
+              <TableCell sx={{ color: '#00caff', fontWeight: 'bold', fontSize: '16px' }} align="left">PX Tier</TableCell>
+              <TableCell sx={{ color: '#00caff', fontWeight: 'bold', fontSize: '16px' }} align="right">Amount</TableCell>
+              <TableCell sx={{ color: '#00caff', fontWeight: 'bold', fontSize: '16px' }} align="left">Product</TableCell>
+              <TableCell sx={{ color: '#00caff', fontWeight: 'bold', fontSize: '16px' }} align="left">Sales Rep</TableCell>
             </TableRow>
           </TableHead>
 
@@ -69,14 +109,37 @@ export default function BasicTable() {
                 key={row.oppId}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row"> {row.oppName} </TableCell>
-                <TableCell align="left">{row.stage}</TableCell>
-                <TableCell align="right">{row.repProbability}</TableCell>
-                <TableCell align="right">{row.pilytixProbability}</TableCell>
-                <TableCell align="left">{row.pilytixTier}</TableCell>
-                <TableCell align="right">{row.amount}</TableCell>
-                <TableCell align="left">{row.product}</TableCell>
-                <TableCell align="left">{row.salesRepName}</TableCell>
+                <TableCell sx={{ fontSize: '14px' }} component="th" scope="row">
+                  <div className="year-container">
+                    {row.oppName.split('-')[2]}
+                    <div className="year-btn-row">
+                      {BizClass(row.oppName)}
+                      <button className="year-num"> {row.oppName.split('-')[1]}</button>
+                    </div>
+                  </div>
+                </TableCell>
+
+                <TableCell sx={{ fontSize: '14px' }} align="left">
+                  <div className="stage-table-container">
+                  <div className="stage-table" style={{backgroundColor: oppStageColor(row.stage.split('.')[0]), textAlign: 'center' }}  >{row.stage.split('.')[0]}</div>
+                  {row.stage.split('.')[1]}
+                  </div>
+                </TableCell>
+
+                <TableCell sx={{ fontSize: '14px', fontWeight: 'bolder', color: percentageColor((row.repProbability * 100).toFixed(2).split('.')[0]) }} align="right">{(row.repProbability * 100).toFixed(2).split('.')[0]}%</TableCell>
+                <TableCell sx={{ fontSize: '14px', fontWeight: 'bolder', color: percentageColor((row.pilytixProbability * 100).toFixed(2).split('.')[0]) }} align="right">{(row.pilytixProbability * 100).toFixed(2).split('.')[0]}%</TableCell>
+
+                <TableCell sx={{ fontSize: '14px' }} align="left">
+                  <div className='stars-container'>
+                    {returnStars(row.pilytixTier, 'table').map((star, idx) =>
+                      <div className='stars-table' key={idx}>{star}</div>
+                    )}
+                  </div>
+                </TableCell>
+
+                <TableCell sx={{ fontSize: '14px' }} align="right">{row.amount.toLocaleString('US', { style: 'currency', currency: 'USD' }).split('.')[0]}</TableCell>
+                <TableCell sx={{ fontSize: '14px' }} align="left">{row.product}</TableCell>
+                <TableCell sx={{ fontSize: '14px' }} align="left">{row.salesRepName}</TableCell>
               </TableRow>
             ))}
           </TableBody>

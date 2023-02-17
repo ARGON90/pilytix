@@ -28,10 +28,10 @@ export default function Header() {
         <Box>
             <Box display="flex">
                 <IconButton onClick={colorMode.toggleColorMode}>
-                    {theme.palette.mode === "dark" ? (
-                        <LightModeOutlinedIcon sx={{color: 'white'}} />
+                    {theme.palette.mode === "light" ? (
+                        <LightModeOutlinedIcon />
                         ) : (
-                        <DarkModeOutlinedIcon sx={{color: 'black'}}  />
+                        <DarkModeOutlinedIcon  />
                     )}
                 </IconButton>
             </Box>
