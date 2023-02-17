@@ -5,7 +5,7 @@ I testify that this work is wholly my own.
 
 ## Time Spent: total: ~14 hours
 
-Most of the time was spent learning MUI and Nivo - it was my first time using either of them!
+Most of the time was spent learning MUI and Nivo - it was my first time using either of them! With some more time, there are some little extra features I'd implement, with a more cohesive color palette.
 
 ### Learning MUI/Nivo : 7 hours
 ~6 hours. Resources: Mostly MUI & Nivo docs pages, also Stack Overflow & Youtube
