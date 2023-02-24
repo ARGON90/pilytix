@@ -1,5 +1,4 @@
 import { ResponsiveBar } from '@nivo/bar'
-import { barColors } from '../theme';
 
 const BarChart = ({ data, yAxis, axisTheme, colors }) => (
     <>

@@ -52,7 +52,7 @@ export function factorsAffectingProbability(increasing, decreasing) {
         strongP: { strength: "strong+", "strong+": 0, "strong+Color": "hsl(189, 70%, 50%)", messages: [] }
     }
     if (increasing) {
-        increasing.map((item) => {
+        increasing.forEach((item) => {
             const weight = item.weight.value;
             if (weight === 1) {
                 res.weakP["weak+"]++;
@@ -67,7 +67,7 @@ export function factorsAffectingProbability(increasing, decreasing) {
         })
     }
     if (decreasing) {
-        decreasing.map((item) => {
+        decreasing.forEach((item) => {
             const weight = item.weight.value;
             if (weight === -1) {
                 res.weakN["weak-"]++
